@@ -3,6 +3,7 @@ package com.griotold.product.domain.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.PrePersist;
 import lombok.Getter;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedBy;
@@ -55,5 +56,12 @@ public abstract class BaseEntity {
 
     public boolean isDeleted() {
         return isDeleted;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        if (this.isDeleted == null) {
+            this.isDeleted = false;
+        }
     }
 }

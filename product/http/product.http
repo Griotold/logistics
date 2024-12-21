@@ -1,0 +1,10 @@
+### 상품 생성
+POST localhost:19091/api/products
+Content-Type: application/json
+
+{
+  "companyId": "123e4567-e89b-12d3-a456-426614174002",
+  "hubId": "123e4567-e89b-12d3-a456-426614174003",
+  "name": "Test Product",
+  "quantity": 100
+}
