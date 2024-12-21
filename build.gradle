@@ -7,6 +7,7 @@ subprojects {
 
 	apply plugin: 'java'
 	apply plugin: 'groovy'
+	// apply plugin: 'java-library'       // implementation 말고 api를 사용하기 위해 추가
 	apply plugin: 'org.springframework.boot'
 	apply plugin: 'io.spring.dependency-management'
 
@@ -30,6 +31,8 @@ subprojects {
 	dependencies {
 		implementation 'org.springframework.boot:spring-boot-starter-web'
 		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+		compileOnly 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
 
 		// spock
 		testImplementation 'org.spockframework:spock-core:2.4-M4-groovy-4.0'
