@@ -1,4 +1,4 @@
-package com.griotold;
+package com.griotold.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

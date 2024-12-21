@@ -1,4 +1,4 @@
-package com.griotold;
+package com.griotold.exception;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

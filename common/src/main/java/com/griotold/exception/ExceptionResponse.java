@@ -1,4 +1,4 @@
-package com.griotold;
+package com.griotold.exception;
 
 public record ExceptionResponse(
         String message
