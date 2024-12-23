@@ -25,4 +25,12 @@ public class ProductController {
         ProductResponse response = productService.createProduct(productCreateRequest.toServiceDto());
         return ApiResponse.success(response);
     }
+
+    // 단건 조회
+
+    // 페이징
+
+    // 수정
+
+    // 삭제
 }
