@@ -3,8 +3,8 @@ POST localhost:19091/api/products
 Content-Type: application/json
 
 {
-  "companyId": "123e4567-e89b-12d3-a456-426614174008",
-  "hubId": "123e4567-e89b-12d3-a456-426614174009",
-  "name": "Test Product3",
-  "quantity": 103
+  "companyId": "123e4567-e89b-12d3-a456-426614174009",
+  "hubId": "123e4567-e89b-12d3-a456-426614174010",
+  "name": "Test Product4",
+  "quantity": 104
 }
