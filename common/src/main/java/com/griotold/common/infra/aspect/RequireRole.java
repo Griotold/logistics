@@ -1,4 +1,4 @@
-package com.griotold.infra.aspect;
+package com.griotold.common.infra.aspect;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

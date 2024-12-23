@@ -1,4 +1,4 @@
-package com.griotold.infra.aspect;
+package com.griotold.common.infra.aspect;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

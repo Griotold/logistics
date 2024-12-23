@@ -8,3 +8,7 @@ Content-Type: application/json
   "name": "Test Product4",
   "quantity": 104
 }
+
+### 상품 단건 조회
+GET localhost:19091/api/products/123e4567-e89b-12d3-a456-426614174999
+Content-Type: application/json

@@ -1,7 +1,7 @@
-package com.griotold.infra.aspect;
+package com.griotold.common.infra.aspect;
 
-import com.griotold.exception.ErrorCode;
-import com.griotold.exception.LogisticsException;
+import com.griotold.common.exception.ErrorCode;
+import com.griotold.common.exception.LogisticsException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

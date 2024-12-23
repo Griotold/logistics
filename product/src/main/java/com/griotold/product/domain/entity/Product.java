@@ -1,6 +1,6 @@
 package com.griotold.product.domain.entity;
 
-import com.griotold.domain.entity.BaseEntity;
+import com.griotold.common.domain.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

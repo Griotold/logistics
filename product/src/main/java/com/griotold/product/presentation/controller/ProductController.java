@@ -1,16 +1,14 @@
 package com.griotold.product.presentation.controller;
 
-import com.griotold.infra.aspect.RequireRole;
-import com.griotold.presentation.ApiResponse;
+import com.griotold.common.presentation.ApiResponse;
 import com.griotold.product.application.dto.ProductResponse;
 import com.griotold.product.application.service.ProductService;
 import com.griotold.product.presentation.dto.ProductCreateRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -27,6 +25,12 @@ public class ProductController {
     }
 
     // 단건 조회
+    @GetMapping("/{id}")
+    public ApiResponse<ProductResponse> getProduct(@PathVariable("id") UUID id) {
+        ProductResponse response = productService.getProduct(id);
+        return ApiResponse.success(response);
+    }
+
 
     // 페이징
 

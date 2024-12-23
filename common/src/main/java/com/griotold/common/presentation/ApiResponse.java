@@ -1,4 +1,4 @@
-package com.griotold.presentation;
+package com.griotold.common.presentation;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.http.HttpStatus;

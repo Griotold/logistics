@@ -1,7 +1,7 @@
 package com.griotold.product.application.service
 
-import com.griotold.exception.ErrorCode
-import com.griotold.exception.LogisticsException
+import com.griotold.common.exception.ErrorCode
+import com.griotold.common.exception.LogisticsException
 import com.griotold.product.domain.entity.Product
 import com.griotold.product.application.dto.ProductCreate
 import com.griotold.product.domain.repository.ProductRepository
