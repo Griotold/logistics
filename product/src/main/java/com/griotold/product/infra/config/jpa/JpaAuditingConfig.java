@@ -1,4 +1,4 @@
-package com.griotold.infra.config.jpa;
+package com.griotold.product.infra.config.jpa;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

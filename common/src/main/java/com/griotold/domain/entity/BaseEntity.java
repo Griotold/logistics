@@ -1,4 +1,4 @@
-package com.griotold.product.domain.entity;
+package com.griotold.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

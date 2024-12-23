@@ -1,5 +1,6 @@
 package com.griotold.product.domain.entity;
 
+import com.griotold.domain.entity.BaseEntity;
 import com.griotold.product.domain.enums.CompanyType;
 import jakarta.persistence.*;
 import lombok.*;
