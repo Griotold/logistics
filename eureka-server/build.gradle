@@ -1,6 +1,5 @@
 bootJar.enabled = true
 
 dependencies {
-    implementation project(':common')
     api 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
 }
