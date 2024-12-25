@@ -4,21 +4,27 @@ import com.griotold.common.exception.ErrorCode;
 import com.griotold.common.exception.LogisticsException;
 import com.griotold.product.application.dto.ProductCreate;
 import com.griotold.product.application.dto.ProductResponse;
+import com.griotold.product.application.dto.ProductUpdate;
 import com.griotold.product.domain.entity.Product;
 import com.griotold.product.domain.repository.ProductRepository;
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
 @Slf4j
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 @Service
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final EntityManager em;
 
+    @Transactional
     public ProductResponse createProduct(ProductCreate productCreate) {
         log.info("createProduct.ProductCreate : {}", productCreate);
         Product product = Product.create(
@@ -35,5 +41,20 @@ public class ProductService {
         return productRepository.findById(productId)
                 .map(ProductResponse::from)
                 .orElseThrow(() -> new LogisticsException(ErrorCode.ENTITY_NOT_FOUND));
+    }
+
+    @Transactional
+    public ProductResponse updateProduct(UUID productId, ProductUpdate productUpdate) {
+        log.info("updateProduct.ProductUpdate : {}", productUpdate);
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new LogisticsException(ErrorCode.ENTITY_NOT_FOUND));
+        product.update(
+                productUpdate.companyId(),
+                productUpdate.hubId(),
+                productUpdate.name(),
+                productUpdate.quantity()
+        );
+
+        return ProductResponse.from(product);
     }
 }

@@ -39,4 +39,11 @@ public class Product extends BaseEntity {
                 .quantity(quantity)
                 .build();
     }
+
+    public void update(UUID companyId, UUID hubId, String name, Integer quantity) {
+        this.companyId = companyId;
+        this.hubId = hubId;
+        this.name = name;
+        this.quantity = quantity;
+    }
 }
