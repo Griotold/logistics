@@ -1,4 +1,4 @@
-package com.griotold.product.infra.repository;
+package com.griotold.product.infra.repository.company;
 
 import com.griotold.product.domain.entity.Company;
 import com.griotold.product.domain.repository.CompanyRepository;
