@@ -4,6 +4,7 @@ import com.griotold.common.presentation.ApiResponse;
 import com.griotold.product.application.dto.ProductResponse;
 import com.griotold.product.application.service.ProductService;
 import com.griotold.product.presentation.dto.ProductCreateRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping
-    public ApiResponse<ProductResponse> createProduct(@RequestBody ProductCreateRequest productCreateRequest) {
+    public ApiResponse<ProductResponse> createProduct(@Valid @RequestBody ProductCreateRequest productCreateRequest) {
         ProductResponse response = productService.createProduct(productCreateRequest.toServiceDto());
         return ApiResponse.success(response);
     }

@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import spock.lang.Specification
+import spock.lang.Unroll
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
@@ -35,9 +36,8 @@ class ProductControllerTest extends Specification {
         def companyId = UUID.randomUUID()
         def hubId = UUID.randomUUID()
         def request = new ProductCreateRequest(companyId, hubId, "Test Product", 100)
-        def expectedResponse = new ProductResponse(UUID.randomUUID(), companyId, hubId, "Test Product", 100)
 
-        when: "createProduct API를 호출하면"
+        when: "createProduct API 를 호출하면"
         def response = mockMvc.perform(
                 MockMvcRequestBuilders.post("/api/products")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -46,6 +46,96 @@ class ProductControllerTest extends Specification {
 
         then: "상태 코드는 200 OK"
         response.status == HttpStatus.OK.value()
+    }
+
+    def "createProduct 메서드는 companyId가 필수 입력값이다."() {
+        given: "companyId가 없는 상품 생성 요청이 주어질 때"
+        def companyId = null
+        def hubId = UUID.randomUUID()
+        def request = new ProductCreateRequest(companyId, hubId, "Test Product", 100)
+
+        when: "createProduct API 를 호출하면"
+        def response = mockMvc.perform(
+                MockMvcRequestBuilders.post("/api/products")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request))
+        ).andReturn().response
+
+        then: "상태 코드는 400 BAD_REQUEST"
+        response.status == HttpStatus.BAD_REQUEST.value()
+
+        and: "에러 메시지는 companyId가 필수 입력값임을 나타낸다"
+        def jsonResponse = objectMapper.readValue(response.contentAsString, Map)
+        jsonResponse.message == "companyId is a required field."
+    }
+
+    def "createProduct 메서드는 hubId가 필수 입력값이다."() {
+        given: "hubId가 없는 상품 생성 요청이 주어질 때"
+        def companyId = UUID.randomUUID()
+        def hubId = null
+        def request = new ProductCreateRequest(companyId, hubId, "Test Product", 100)
+
+        when: "createProduct API 를 호출하면"
+        def response = mockMvc.perform(
+                MockMvcRequestBuilders.post("/api/products")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request))
+        ).andReturn().response
+
+        then: "상태 코드는 400 OK"
+        response.status == HttpStatus.BAD_REQUEST.value()
+
+        and: "에러 메시지는 hubId가 필수 입력값임을 나타낸다"
+        def jsonResponse = objectMapper.readValue(response.contentAsString, Map)
+        jsonResponse.message == "hubId is a required field."
+    }
+
+    def "createProduct 메서드는 name 이 필수 입력값이다."() {
+        given: "name 이 없는 상품 생성 요청이 주어질 때"
+        def companyId = UUID.randomUUID()
+        def hubId = UUID.randomUUID()
+        def request = new ProductCreateRequest(companyId, hubId, null, 100)
+
+        when: "createProduct API 를 호출하면"
+        def response = mockMvc.perform(
+                MockMvcRequestBuilders.post("/api/products")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request))
+        ).andReturn().response
+
+        then: "상태 코드는 400 OK"
+        response.status == HttpStatus.BAD_REQUEST.value()
+
+        and: "에러 메시지는 name 이 필수 입력값을 나타낸다."
+        def jsonResponse = objectMapper.readValue(response.contentAsString, Map)
+        jsonResponse.message == "name is a required field."
+    }
+
+    //    @Unroll("createProduct 메서드는 quantity(#quantity)로 호출되었을 때 에러를 반환한다.")
+    def "createProduct 메서드는 quantity 가 양수 입력값이어야 한다."(int quantity) {
+        given: "quantity 가 0, 또는 음수 입력을 받을 때"
+        def companyId = UUID.randomUUID()
+        def hubId = UUID.randomUUID()
+        def request = new ProductCreateRequest(companyId, hubId, "Test Product", quantity)
+
+        when: "createProduct API 를 호출하면"
+        def response = mockMvc.perform(
+                MockMvcRequestBuilders.post("/api/products")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request))
+        ).andReturn().response
+
+        then: "상태 코드는 400 OK"
+        response.status == HttpStatus.BAD_REQUEST.value()
+
+        and: "에러 메시지는 quantity 가 필수 입력값을 나타낸다."
+        def jsonResponse = objectMapper.readValue(response.contentAsString, Map)
+        jsonResponse.message == "quantity is a positive value."
+
+        where:
+        quantity | _
+        0        | _
+        -1       | _
     }
 
     def "getProduct() - 상품 조회 성공"() {
