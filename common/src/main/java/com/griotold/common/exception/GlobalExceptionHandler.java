@@ -9,6 +9,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.Arrays;
@@ -51,5 +52,12 @@ public class GlobalExceptionHandler {
     public ExceptionResponse methodArgumentNotValidException(final MethodArgumentNotValidException e){
         log.error(String.format(ERROR_LOG, e.getParameter(), e.getStatusCode()));
         return new ExceptionResponse(e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ExceptionResponse methodArgumentTypeMismatchException(final MethodArgumentTypeMismatchException e){
+        log.error(String.format(ERROR_LOG, e.getParameter(), HttpStatus.BAD_REQUEST));
+        return new ExceptionResponse(e.getMessage());
     }
 }

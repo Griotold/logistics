@@ -57,4 +57,17 @@ public class ProductService {
 
         return ProductResponse.from(product);
     }
+
+    @Transactional
+    public void deleteProduct(UUID productId) {
+        log.info("deleteProduct.ProductId : {}", productId);
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new LogisticsException(ErrorCode.ENTITY_NOT_FOUND));
+        if (product.isDeleted()) {
+            throw new LogisticsException(ErrorCode.ALREADY_DELETED);
+        }
+
+        // todo userId를 넣는 로직 필요
+        product.deleteBase(1L);
+    }
 }

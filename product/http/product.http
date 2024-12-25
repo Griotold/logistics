@@ -23,3 +23,7 @@ Content-Type: application/json
   "name": "New Product2",
   "quantity": 202
 }
+
+### 상품 삭제
+DELETE localhost:19091/api/products/123e4567-e89b-12d3-a456-426614174229
+Content-Type: application/json

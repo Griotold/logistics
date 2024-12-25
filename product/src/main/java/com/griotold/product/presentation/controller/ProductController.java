@@ -45,10 +45,16 @@ public class ProductController {
      * */
     @PutMapping("/{id}")
     public ApiResponse<ProductResponse> updateProduct(@PathVariable("id") UUID id,
-                                                      @RequestBody ProductUpdateRequest productUpdateRequest) {
+                                                      @Valid @RequestBody ProductUpdateRequest productUpdateRequest) {
         ProductResponse response = productService.updateProduct(id, productUpdateRequest.toServiceDto());
         return ApiResponse.success(response);
     }
 
     // 삭제
+
+    @DeleteMapping("/{id}")
+    public ApiResponse<Void> deleteProduct(@PathVariable("id") UUID id) {
+        productService.deleteProduct(id);
+        return ApiResponse.success();
+    }
 }
