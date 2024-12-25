@@ -13,7 +13,7 @@ public enum ErrorCode {
     INVALID_PASSWORD(HttpStatus.UNAUTHORIZED, "유저 ID 또는 비밀번호 정보가 일치하지 않습니다."),
 
     ENTITY_NOT_FOUND(HttpStatus.NOT_FOUND, "일치하는 엔티티가 존재하지 않습니다."),
-
+    ALREADY_DELETED(HttpStatus.CONFLICT, "이미 삭제되었습니다."),
     ;
 
     private final HttpStatus httpStatus;

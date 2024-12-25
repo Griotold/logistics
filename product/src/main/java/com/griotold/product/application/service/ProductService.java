@@ -7,7 +7,6 @@ import com.griotold.product.application.dto.ProductResponse;
 import com.griotold.product.application.dto.ProductUpdate;
 import com.griotold.product.domain.entity.Product;
 import com.griotold.product.domain.repository.ProductRepository;
-import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,7 +21,6 @@ import java.util.UUID;
 public class ProductService {
 
     private final ProductRepository productRepository;
-    private final EntityManager em;
 
     @Transactional
     public ProductResponse createProduct(ProductCreate productCreate) {
@@ -56,5 +54,18 @@ public class ProductService {
         );
 
         return ProductResponse.from(product);
+    }
+
+    @Transactional
+    public void deleteProduct(UUID productId) {
+        log.info("deleteProduct.ProductId : {}", productId);
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new LogisticsException(ErrorCode.ENTITY_NOT_FOUND));
+        if (product.isDeleted()) {
+            throw new LogisticsException(ErrorCode.ALREADY_DELETED);
+        }
+
+        // todo userId를 넣는 로직 필요
+        product.deleteBase(1L);
     }
 }
