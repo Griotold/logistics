@@ -7,7 +7,7 @@ subprojects {
 
 	apply plugin: 'java'
 	apply plugin: 'groovy'
-	apply plugin: 'java-library'       // implementation 말고 api를 사용하기 위해 추가
+	apply plugin: 'java-library'
 	apply plugin: 'org.springframework.boot'
 	apply plugin: 'io.spring.dependency-management'
 

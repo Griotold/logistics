@@ -44,12 +44,6 @@ class ProductServiceTest extends Specification {
         productResponse.hubId() == hubId
     }
 
-    private void setPrivateField(Object object, String fieldName, Object fieldValue) {
-        def field = ReflectionUtils.findField(object.class, fieldName)
-        ReflectionUtils.makeAccessible(field)
-        ReflectionUtils.setField(field, object, fieldValue)
-    }
-
     def "상품 조회 성공"() {
         given: "상품 ID와 상품 엔티티가 주어질 때"
         def productId = UUID.randomUUID()
@@ -95,5 +89,11 @@ class ProductServiceTest extends Specification {
             httpStatus == HttpStatus.NOT_FOUND
             message == ErrorCode.ENTITY_NOT_FOUND.getMessage()
         }
+    }
+
+    private void setPrivateField(Object object, String fieldName, Object fieldValue) {
+        def field = ReflectionUtils.findField(object.class, fieldName)
+        ReflectionUtils.makeAccessible(field)
+        ReflectionUtils.setField(field, object, fieldValue)
     }
 }

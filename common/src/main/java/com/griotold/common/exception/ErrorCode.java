@@ -14,6 +14,7 @@ public enum ErrorCode {
 
     ENTITY_NOT_FOUND(HttpStatus.NOT_FOUND, "일치하는 엔티티가 존재하지 않습니다."),
     ALREADY_DELETED(HttpStatus.CONFLICT, "이미 삭제되었습니다."),
+    UNSUPPORTED_SORT_TYPE(HttpStatus.BAD_REQUEST, "지원하지 않는 정렬 조건입니다.")
     ;
 
     private final HttpStatus httpStatus;
