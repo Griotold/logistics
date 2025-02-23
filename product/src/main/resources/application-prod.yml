@@ -1,0 +1,33 @@
+server:
+  port: ${PRODUCT_SERVER_PORT}
+
+spring:
+  application:
+    name: product-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${PRODUCT_DB_URL}
+    username: ${PRODUCT_DB_USERNAME}
+    password: ${PRODUCT_DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      format-sql: true
+      use_sql_comments: true
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL}
+
+management:
+  zipkin:
+    tracing:
+      endpoint: ${ZIPKIN_URL}
+  tracing:
+    sampling:
+      probability: 1.0

@@ -1,5 +1,5 @@
 ### 상품 생성
-POST localhost:19091/api/products
+POST localhost:19005/api/products
 Content-Type: application/json
 
 {
@@ -10,11 +10,11 @@ Content-Type: application/json
 }
 
 ### 상품 단건 조회
-GET localhost:19091/api/products/123e4567-e89b-12d3-a456-426614174999
+GET localhost:19005/api/products/739f69e7-5517-4866-be24-a3a03428396b
 Content-Type: application/json
 
 ### 상품 수정
-PUT localhost:19091/api/products/dcb15ffc-ebdb-429a-b1a0-f45cf35190aa
+PUT localhost:19005/api/products/739f69e7-5517-4866-be24-a3a03428396b
 Content-Type: application/json
 
 {
@@ -25,5 +25,5 @@ Content-Type: application/json
 }
 
 ### 상품 삭제
-DELETE localhost:19091/api/products/123e4567-e89b-12d3-a456-426614174229
+DELETE localhost:19005/api/products/739f69e7-5517-4866-be24-a3a03428396b
 Content-Type: application/json

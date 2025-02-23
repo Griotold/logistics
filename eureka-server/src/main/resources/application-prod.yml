@@ -1,0 +1,17 @@
+server:
+  port: ${EUREKA_PORT}
+
+spring:
+  application:
+    name: eureka-server
+  config:
+    activate:
+      on-profile: prod
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  instance:
+    hostname: ${EUREKA_HOSTNAME}
+    prefer-ip-address: true
