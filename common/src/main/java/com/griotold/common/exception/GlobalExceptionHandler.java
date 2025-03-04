@@ -3,6 +3,7 @@ package com.griotold.common.exception;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -30,7 +31,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NoResourceFoundException.class)
     public ExceptionResponse handleNoResourceFoundException(NoResourceFoundException e) {
         log.error(String.format(ERROR_LOG, e.getMessage(), e.getClass().getName()));
-        return new ExceptionResponse("지원하지 않는 경로입니다.");
+        return new ExceptionResponse("요청하신 경로를 찾을 수 없습니다.");
     }
 
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
@@ -59,5 +60,12 @@ public class GlobalExceptionHandler {
     public ExceptionResponse methodArgumentTypeMismatchException(final MethodArgumentTypeMismatchException e){
         log.error(String.format(ERROR_LOG, e.getParameter(), HttpStatus.BAD_REQUEST));
         return new ExceptionResponse(e.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ExceptionResponse httpMessageNotReadableException(final HttpMessageNotReadableException e){
+        log.error(String.format(ERROR_LOG, e.getMessage(), HttpStatus.BAD_REQUEST));
+        return new ExceptionResponse("잘못된 JSON 형식입니다.");
     }
 }

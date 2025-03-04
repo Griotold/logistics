@@ -12,6 +12,13 @@ dependencies {
     api 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     api 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
+    // Security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // JWT
+    implementation 'io.jsonwebtoken:jjwt:0.12.6'
+    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+
     //zipkin
     implementation 'io.micrometer:micrometer-tracing-bridge-brave'
     implementation 'io.zipkin.reporter2:zipkin-reporter-brave'

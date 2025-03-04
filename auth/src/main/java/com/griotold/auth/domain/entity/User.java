@@ -14,12 +14,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "p_user")
 public class User extends BaseEntity {
-    // username
-    // password
-    // nickname
-    // slack_id
-    // role
-    // 감사 로그, isDeleted
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", updatable = false, nullable = false)

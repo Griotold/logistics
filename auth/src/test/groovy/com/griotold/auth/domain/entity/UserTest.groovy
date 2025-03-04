@@ -23,7 +23,7 @@ class UserTest extends Specification {
             it.role == role
         }
 
-        and: "userId는 null이어야 한다"
+        and: "userId는 null 이어야 한다"
         user.id == null
     }
 }
