@@ -24,6 +24,11 @@ eureka:
     serviceUrl:
       defaultZone: ${EUREKA_SERVER_URL}
 
+service:
+  jwt:
+    access-expiration: ${EXPIRATION_TIME}
+    secret-key: ${SECRET_KEY}
+
 management:
   zipkin:
     tracing:
