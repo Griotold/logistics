@@ -23,6 +23,7 @@ public class AuthController {
 
     @PostMapping("/signUp")
     public ApiResponse<UserResponse> signUp(@Valid @RequestBody UserSignUpRequest signUpRequest) {
+        log.info("SignUp.UserSignUpRequest : {}", signUpRequest);
         UserResponse userResponse = authService.singUp(signUpRequest.toServiceDto());
         return ApiResponse.success(userResponse);
     }

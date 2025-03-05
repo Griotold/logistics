@@ -1,0 +1,10 @@
+### 회원가입
+POST localhost:19005/api/auth/signUp
+Content-Type: application/json
+
+{
+  "username": "griotold",
+  "password": "pass1234",
+  "email": "griotold@email.com",
+  "role": "HUB"
+}
