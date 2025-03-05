@@ -13,4 +13,6 @@ public interface UserRepository {
     <S extends User> List<S> saveAll(Iterable<S> entities);
 
     boolean existsByUsername(String username);
+
+    Optional<User> findByUsername(String username);
 }
