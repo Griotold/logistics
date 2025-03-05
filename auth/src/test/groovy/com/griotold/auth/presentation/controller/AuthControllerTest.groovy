@@ -3,6 +3,7 @@ package com.griotold.auth.presentation.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.griotold.auth.application.service.AuthService
 import com.griotold.auth.infra.config.security.AuthConfig
+import com.griotold.auth.presentation.dto.UserSignInRequest
 import com.griotold.auth.presentation.dto.UserSignUpRequest
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -30,7 +31,7 @@ class AuthControllerTest extends Specification {
         given:
         def request = new UserSignUpRequest("testuser", "password1", "test@example.com", "HUB")
 
-        expect:
+        expect: "상태 코드 200 OK"
         mockMvc.perform(post("/api/auth/signUp")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(request)))
@@ -59,5 +60,39 @@ class AuthControllerTest extends Specification {
         "password" | "testuser" | "password" | "test@example.com"| "USER"
         "email"    | "testuser" | "password1"| "invalid-email"   | "USER"
         "role"     | "testuser" | "password1"| "test@example.com"| "USER123"
+    }
+
+    def "signIn - 성공"() {
+        given:
+        def request = new UserSignInRequest("testuser", "password123")
+
+        expect: "상태 코드 200 OK"
+        def response = mockMvc.perform(post("/api/auth/signIn")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(om.writeValueAsString(request)))
+                .andExpect(status().isOk())
+                .andReturn().response
+    }
+
+    @Unroll("#field 유효성 검사 실패")
+    def "signIn - 유효성 검사 실패"() {
+        given:
+        def request = new UserSignInRequest(username, password)
+
+        when:
+        def response = mockMvc.perform(post("/api/auth/signIn")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(om.writeValueAsString(request)))
+                .andExpect(status().isBadRequest())
+                .andReturn().response
+
+        then: "유효성 검사에 실패한 field 가 에러 메시지로 응답된다."
+        def jsonResponse = om.readValue(response.contentAsString, Map)
+        jsonResponse.message.contains(field)
+
+        where:
+        field      | username   | password
+        "username" | null       | "password123"
+        "password" | "testuser" | null
     }
 }

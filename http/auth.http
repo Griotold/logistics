@@ -8,3 +8,12 @@ Content-Type: application/json
   "email": "griotold@email.com",
   "role": "HUB"
 }
+
+### 로그인
+POST localhost:19005/api/auth/signIn
+Content-Type: application/json
+
+{
+  "username": "griotold",
+  "password": "pass1234"
+}

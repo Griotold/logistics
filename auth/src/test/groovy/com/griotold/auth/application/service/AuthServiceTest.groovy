@@ -1,5 +1,6 @@
 package com.griotold.auth.application.service
 
+import com.griotold.auth.application.dto.UserSignIn
 import com.griotold.common.exception.ErrorCode
 import com.griotold.common.exception.LogisticsException
 import com.griotold.auth.domain.entity.User
@@ -26,6 +27,8 @@ class AuthServiceTest extends Specification {
     @Autowired UserRepository userRepository
 
     @Autowired PasswordEncoder passwordEncoder
+
+    @Autowired JwtTokenProvider jwtTokenProvider
 
     @Autowired EntityManager em
 
@@ -88,4 +91,56 @@ class AuthServiceTest extends Specification {
             message == ErrorCode.INVALID_ROLE.getMessage()
         }
     }
+
+    def "signIn - 성공해서 String token을 반환하는 경우"() {
+        given: "유효한 사용자 정보가 주어졌을 때"
+        def username = "validUser"
+        def password = "validPassword"
+        def encodedPassword = passwordEncoder.encode(password)
+        def user = User.create(username, encodedPassword, "user@example.com", Role.HUB)
+        userRepository.save(user)
+
+        when: "signIn 메서드를 호출하면"
+        def token = authService.singIn(new UserSignIn(username, password))
+
+        then: "JWT 토큰이 반환된다."
+        token != null
+    }
+
+    def "signIn - 없는 User라 예외 발생하는 경우"() {
+        given: "존재하지 않는 username이 주어졌을 때"
+        def username = "nonExistentUser"
+        def password = "password"
+
+        when: "signIn 메서드를 호출하면"
+        authService.singIn(new UserSignIn(username, password))
+
+        then: "ENTITY_NOT_FOUND 예외가 발생한다."
+        def exception = thrown(LogisticsException)
+        with(exception) {
+            httpStatus == HttpStatus.NOT_FOUND
+            message == ErrorCode.ENTITY_NOT_FOUND.getMessage()
+        }
+    }
+
+    def "signIn - password 통과 못해서 예외 발생하는 경우"() {
+        given: "유효한 username과 잘못된 password가 주어졌을 때"
+        def username = "validUser"
+        def correctPassword = "correctPassword"
+        def wrongPassword = "wrongPassword"
+        def encodedPassword = passwordEncoder.encode(correctPassword)
+        def user = User.create(username, encodedPassword, "user@example.com", Role.HUB)
+        userRepository.save(user)
+
+        when: "signIn 메서드를 호출하면"
+        authService.singIn(new UserSignIn(username, wrongPassword))
+
+        then: "INVALID_PASSWORD 예외가 발생한다."
+        def exception = thrown(LogisticsException)
+        with(exception) {
+            httpStatus == HttpStatus.UNAUTHORIZED
+            message == ErrorCode.INVALID_PASSWORD.getMessage()
+        }
+    }
+
 }

@@ -40,4 +40,32 @@ class UserRepositoryTest extends Specification {
         then: "false 를 리턴한다."
         result == false
     }
+
+    def "findByUsername - 존재하는 경우 User 객체 반환"() {
+        given: "'testUser' 라는 이름의 유저가 존재할 때"
+        def username = "testUser"
+        def user = User.create(username, "password123", "test@example.com", Role.HUB)
+        userRepository.save(user)
+
+        when: "findByUsername 을 호출하면"
+        def result = userRepository.findByUsername(username)
+
+        then: "해당 User 객체를 Optional 로 감싸서 반환한다."
+        result.isPresent()
+        result.get().username == username
+        result.get().email == "test@example.com"
+        result.get().role == Role.HUB
+    }
+
+    def "findByUsername - 존재하지 않는 경우 빈 Optional 반환"() {
+        given: "데이터베이스에 없는 username 의 경우"
+        def username = "nonExistentUser"
+
+        when: "findByUsername 을 호출하면"
+        def result = userRepository.findByUsername(username)
+
+        then: "빈 Optional 을 반환한다."
+        result.isEmpty()
+    }
+
 }
