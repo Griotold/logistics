@@ -20,10 +20,10 @@ public class CompanyService {
 
     private final CompanyRepository companyRepository;
 
+    @Transactional
     public CompanyResponse createCompany(CompanyCreate companyCreate) {
         log.info("createCompany.companyCreate : {}", companyCreate);
         // 권한 검증
-        // MASTER, HUB만 가능 모든 업체 생성 가능 -> 이거 컨트롤러에서 해줘야함.
         // todo HUB 권한은 요청하는 HUB 의 관리자인지 확인 해야함 -> userId 와 hubId 받아서 HUB 관리자가 맞는 지 검증
 
         validateName(companyCreate.name());

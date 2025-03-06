@@ -1,4 +1,4 @@
-package com.griotold.product.presentation.dto;
+package com.griotold.product.presentation.dto.product;
 
 import com.griotold.product.application.dto.product.ProductUpdate;
 import jakarta.validation.constraints.NotBlank;
