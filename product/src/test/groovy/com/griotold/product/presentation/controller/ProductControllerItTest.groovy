@@ -1,10 +1,7 @@
 package com.griotold.product.presentation.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.griotold.product.application.dto.ProductResponse
-import com.griotold.product.application.service.ProductService
-import com.griotold.product.presentation.dto.ProductCreateRequest
-import org.spockframework.spring.SpringBean
+import com.griotold.product.presentation.dto.product.ProductCreateRequest
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest

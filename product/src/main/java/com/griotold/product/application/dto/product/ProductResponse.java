@@ -1,4 +1,4 @@
-package com.griotold.product.application.dto;
+package com.griotold.product.application.dto.product;
 
 import com.griotold.product.domain.entity.Product;
 

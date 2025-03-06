@@ -1,10 +1,10 @@
 package com.griotold.product.presentation.controller;
 
 import com.griotold.common.presentation.ApiResponse;
-import com.griotold.product.application.dto.ProductResponse;
+import com.griotold.product.application.dto.product.ProductResponse;
 import com.griotold.product.application.service.ProductService;
-import com.griotold.product.presentation.dto.ProductCreateRequest;
-import com.griotold.product.presentation.dto.ProductUpdateRequest;
+import com.griotold.product.presentation.dto.product.ProductCreateRequest;
+import com.griotold.product.presentation.dto.product.ProductUpdateRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -14,6 +14,51 @@ POST localhost:19005/api/auth/signIn
 Content-Type: application/json
 
 {
-  "username": "griotold",
+  "username": "hub",
   "password": "pass1234"
 }
+
+### 회원가입 - MASTER
+POST localhost:19005/api/auth/signUp
+Content-Type: application/json
+
+{
+  "username": "master",
+  "password": "pass1234",
+  "email": "master@email.com",
+  "role": "MASTER"
+}
+
+### 회원가입 - HUB
+POST localhost:19005/api/auth/signUp
+Content-Type: application/json
+
+{
+  "username": "hub",
+  "password": "pass1234",
+  "email": "hub@email.com",
+  "role": "HUB"
+}
+
+### 회원가입 - DELIVERY
+POST localhost:19005/api/auth/signUp
+Content-Type: application/json
+
+{
+  "username": "delivery",
+  "password": "pass1234",
+  "email": "delivery@email.com",
+  "role": "DELIVERY"
+}
+
+### 회원가입 - COMPANY
+POST localhost:19005/api/auth/signUp
+Content-Type: application/json
+
+{
+  "username": "company",
+  "password": "pass1234",
+  "email": "company@email.com",
+  "role": "COMPANY"
+}
+

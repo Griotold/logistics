@@ -20,20 +20,16 @@ public class Company extends BaseEntity {
     @Column(name = "company_id", updatable = false, nullable = false)
     private UUID id;
 
-    @Setter
-    @Column(name = "hub_id")
+    @Column(name = "hub_id", nullable = false)
     private UUID hubId;
 
-    @Setter
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Setter
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
     private CompanyType type;
 
-    @Setter
     @Column(name = "address")
     private String address;
 

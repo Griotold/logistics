@@ -1,4 +1,4 @@
-package com.griotold.product.application.dto;
+package com.griotold.product.application.dto.product;
 
 import java.util.UUID;
 

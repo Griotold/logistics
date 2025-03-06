@@ -4,10 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.griotold.common.exception.ErrorCode
 import com.griotold.common.exception.GlobalExceptionHandler
 import com.griotold.common.exception.LogisticsException
-import com.griotold.product.application.dto.ProductResponse
+import com.griotold.product.application.dto.product.ProductResponse
 import com.griotold.product.application.service.ProductService
-import com.griotold.product.presentation.dto.ProductCreateRequest
-import com.griotold.product.presentation.dto.ProductUpdateRequest
+import com.griotold.product.presentation.dto.product.ProductCreateRequest
+import com.griotold.product.presentation.dto.product.ProductUpdateRequest
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc

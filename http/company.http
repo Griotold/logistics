@@ -1,0 +1,11 @@
+### 업체 생성
+POST localhost:19005/api/companies
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjozLCJyb2xlIjoiSFVCIiwiaXNzIjoiYXV0aC1zZXJ2aWNlIiwiaWF0IjoxNzQxMjUxNDUzLCJleHAiOjE3NDEyNTUwNTN9.WJBoA_pxm_FMm_RqzXOp6OEbLs4k-ZX_-sdXjhlWdoHV04t_k5Tts3sk9NQ1blAxEukDnjgNxvXVWxlxn04ylQ
+
+{
+  "hubId": "123e4567-e89b-12d3-a456-426614174009",
+  "name": "부산시 땡땡 업체3",
+  "type": "MANUFACTURER",
+  "address": "부산시 사상구 영성동로 435 길 19"
+}

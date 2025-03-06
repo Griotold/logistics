@@ -2,9 +2,9 @@ package com.griotold.product.application.service;
 
 import com.griotold.common.exception.ErrorCode;
 import com.griotold.common.exception.LogisticsException;
-import com.griotold.product.application.dto.ProductCreate;
-import com.griotold.product.application.dto.ProductResponse;
-import com.griotold.product.application.dto.ProductUpdate;
+import com.griotold.product.application.dto.product.ProductCreate;
+import com.griotold.product.application.dto.product.ProductResponse;
+import com.griotold.product.application.dto.product.ProductUpdate;
 import com.griotold.product.domain.entity.Product;
 import com.griotold.product.domain.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;

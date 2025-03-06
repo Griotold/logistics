@@ -18,7 +18,11 @@ public enum ErrorCode {
 
     // Auth
     DUPLICATE_USERNAME(HttpStatus.CONFLICT, "중복된 username 입니다."),
-    INVALID_ROLE(HttpStatus.BAD_REQUEST, "입력할 수 없는 권한입니다.")
+    INVALID_ROLE(HttpStatus.BAD_REQUEST, "입력할 수 없는 권한입니다."),
+
+    // Company
+    DUPLICATE_COMPANY_NAME(HttpStatus.CONFLICT, "중복된 company name 입니다."),
+    INVALID_COMPANY_TYPE(HttpStatus.BAD_REQUEST, "입력할 수 없는 업체 타입 입니다."),
     ;
 
     private final HttpStatus httpStatus;

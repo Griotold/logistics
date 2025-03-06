@@ -15,27 +15,27 @@ spring:
         - id: auth-service
           uri: lb://auth-service
           predicates:
-            - Path=/api/v1/auths/**, /api/v1/users/**
-        - id: restaurant-service
-          uri: lb://restaurant-service
+            - Path=/api/auth/**, /api/users/**
+        - id: hub-service
+          uri: lb://hub-service
           predicates:
-            - Path=/api/v1/restaurants/**
-        - id: queue-service
-          uri: lb://queue-service
+            - Path=/api/hub/**, /api/hub-movement/**
+        - id: delivery-service
+          uri: lb://delivery-service
           predicates:
-            - Path=/api/v1/queues/**
-        - id: reservation-service
-          uri: lb://reservation-service
+            - Path=/api/delivery/**, /api/delivery-staff/**, /api/delivery-history/**
+        - id: order-service
+          uri: lb://order-service
           predicates:
-            - Path=/api/v1/reservations/**
-        - id: payment-service
-          uri: lb://payment-service
+            - Path=/api/orders/**
+        - id: product-service
+          uri: lb://product-service
           predicates:
-            - Path=/api/v1/payments/**
+            - Path=/api/products/**, /api/companies/**
         - id: notification-service
           uri: lb://notification-service
           predicates:
-            - Path=/api/v1/notifications/**, /api/v1/ai/**
+            - Path=/api/slack-messages/**, /api/ai/**
 
       discovery:
         locator:
