@@ -1,6 +1,7 @@
 ### 상품 생성
 POST localhost:19005/api/products
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxLCJyb2xlIjoiSFVCIiwiaXNzIjoiYXV0aC1zZXJ2aWNlIiwiaWF0IjoxNzQxMjMxNTEwLCJleHAiOjE3NDEyMzUxMTB9.uiQUf0wzA-4Qnt7z2Ev6fKYdwLhiZreoEHaOCS4E756KhozQ04zzYZ7Bz0xZfG2fQ0H-v53Dl6HrOQAE0EocFA
 
 {
   "companyId": "123e4567-e89b-12d3-a456-426614174009",
@@ -12,10 +13,13 @@ Content-Type: application/json
 ### 상품 단건 조회
 GET localhost:19005/api/products/739f69e7-5517-4866-be24-a3a03428396b
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxLCJyb2xlIjoiSFVCIiwiaXNzIjoiYXV0aC1zZXJ2aWNlIiwiaWF0IjoxNzQxMjMxNTEwLCJleHAiOjE3NDEyMzUxMTB9.uiQUf0wzA-4Qnt7z2Ev6fKYdwLhiZreoEHaOCS4E756KhozQ04zzYZ7Bz0xZfG2fQ0H-v53Dl6HrOQAE0EocFA
 
 ### 상품 수정
 PUT localhost:19005/api/products/739f69e7-5517-4866-be24-a3a03428396b
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxLCJyb2xlIjoiSFVCIiwiaXNzIjoiYXV0aC1zZXJ2aWNlIiwiaWF0IjoxNzQxMjMxNTEwLCJleHAiOjE3NDEyMzUxMTB9.uiQUf0wzA-4Qnt7z2Ev6fKYdwLhiZreoEHaOCS4E756KhozQ04zzYZ7Bz0xZfG2fQ0H-v53Dl6HrOQAE0EocFA
+
 
 {
   "companyId": "123e4567-e89b-12d3-a456-426614174228",
@@ -27,3 +31,4 @@ Content-Type: application/json
 ### 상품 삭제
 DELETE localhost:19005/api/products/739f69e7-5517-4866-be24-a3a03428396b
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxLCJyb2xlIjoiSFVCIiwiaXNzIjoiYXV0aC1zZXJ2aWNlIiwiaWF0IjoxNzQxMjMxNTEwLCJleHAiOjE3NDEyMzUxMTB9.uiQUf0wzA-4Qnt7z2Ev6fKYdwLhiZreoEHaOCS4E756KhozQ04zzYZ7Bz0xZfG2fQ0H-v53Dl6HrOQAE0EocFA

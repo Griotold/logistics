@@ -44,8 +44,12 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka-server:19000/eureka/
+      defaultZone: ${EUREKA_SERVER_URL}
     register-with-eureka: true
     fetch-registry: true
   instance:
     prefer-ip-address: true
+
+service:
+  jwt:
+    secret-key: ${SECRET_KEY}
