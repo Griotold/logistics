@@ -1,7 +1,7 @@
 package com.griotold.product.presentation.controller;
 
 import com.griotold.common.presentation.ApiResponse;
-import com.griotold.product.application.dto.ProductResponse;
+import com.griotold.product.application.dto.product.ProductResponse;
 import com.griotold.product.application.service.ProductService;
 import com.griotold.product.presentation.dto.ProductCreateRequest;
 import com.griotold.product.presentation.dto.ProductUpdateRequest;

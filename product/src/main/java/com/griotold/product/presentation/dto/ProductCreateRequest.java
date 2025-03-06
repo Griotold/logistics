@@ -1,6 +1,6 @@
 package com.griotold.product.presentation.dto;
 
-import com.griotold.product.application.dto.ProductCreate;
+import com.griotold.product.application.dto.product.ProductCreate;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

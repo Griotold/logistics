@@ -56,9 +56,6 @@ class AuthServiceTest extends Specification {
             username == "newUser"
             email == "user@example.com"
         }
-        savedUser != null
-        savedUser.username == "newUser"
-        savedUser.email == "user@example.com"
     }
 
     def "signUp - 중복된 username으로 회원가입 시 예외 발생"() {
