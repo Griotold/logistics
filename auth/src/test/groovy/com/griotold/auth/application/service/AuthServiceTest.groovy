@@ -143,4 +143,27 @@ class AuthServiceTest extends Specification {
         }
     }
 
+    def "verifyUser - 존재하는 사용자 ID로 호출 시 true 반환"() {
+        given: "데이터베이스에 사용자가 존재할 때"
+        def user = User.create("existingUser", "password", "user@example.com", Role.HUB)
+        def savedUser = userRepository.save(user)
+
+        when: "verifyUser 메서드를 호출하면"
+        def result = authService.verifyUser(savedUser.getId())
+
+        then: "true가 반환된다"
+        result == true
+    }
+
+    def "verifyUser - 존재하지 않는 사용자 ID로 호출 시 false 반환"() {
+        given: "데이터베이스에 존재하지 않는 사용자 ID"
+        def nonExistentUserId = 9999L
+
+        when: "verifyUser 메서드를 호출하면"
+        def result = authService.verifyUser(nonExistentUserId)
+
+        then: "false가 반환된다"
+        result == false
+    }
+
 }

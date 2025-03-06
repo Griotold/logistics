@@ -58,4 +58,10 @@ public class AuthService {
             throw new LogisticsException(ErrorCode.INVALID_PASSWORD);
         }
     }
+
+    public Boolean verifyUser(Long id) {
+        log.info("verifyUser.userId: {}", id);
+        return userRepository.findById(id).isPresent();
+    }
+
 }
