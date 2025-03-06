@@ -31,7 +31,10 @@ class CompanyControllerTest extends Specification {
         expect: "상태 코드 200 OK"
         mockMvc.perform(post("/api/companies")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(om.writeValueAsString(request)))
+                .content(om.writeValueAsString(request))
+                .header("X-User-Id", 4L)
+                .header("X-Role", "HUB")
+        )
                 .andExpect(status().isOk())
     }
 
